@@ -7,5 +7,7 @@ I also am involved in the [NJOY21](https://github.com/njoy21) project.
 Let's see if I can do an equation here:
 
 $$
+\begin[equation}
 f(x) = e^{x-abc}
+\end{equation}
 $$
