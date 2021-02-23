@@ -42,6 +42,7 @@ livereload: true
 
 include:
   - _pages
+  - _photos
 
 exclude:
   - .sass-cache/

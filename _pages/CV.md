@@ -21,8 +21,9 @@ Weber State University, Ogden, Utah
 ### Los Alamos National Laboratory
 This is only a summary of activities. Please follow the links for additional information.
 
-**Nuclear Data Team Leader** (January 2020--present)<br>
+**Nuclear Data Team Leader** (January 2020--present)
 **R&D Scientist** (October 2010---present)
+: X-Computational Physics Division, Materials and Physical Data Group (XCP-5)
 - Led effort to create NJOY21, a modernized version of NJOY, a nuclear data processing code. Instrumental in making NJOY2016 and NJOY21 Open Source and distributed at <https://github.com/njoy>
 - Regular leader and participant in [Working Party on International Nuclear Data Evaluation Co-operation (WPEC)]({% link _pages/CV/WPEC.md %})
 - Participated in high-priority effort to modernize the code, data, and techniques of the Nuclear Criticality Safety team at LANL. 
@@ -32,7 +33,7 @@ This is only a summary of activities. Please follow the links for additional inf
 
 **Postdoc** (August 2009--October 2010)
 
-### Ott Planetarium---Weber State University
+### Weber State University---Ott Planetarium
 **Planetarium Lecturer** (January 2000--May 2003)
 
 ## Recognition and Awards
