@@ -12,8 +12,8 @@ github_username:  jlconlin
 author_profile: true
 markdown: kramdown
 
-# plugins:
-#   - jekyll-feed
+plugins:
+  - jekyll/scholar
 
 # Theme settings
 theme: minimal-mistakes-jekyll
@@ -39,6 +39,11 @@ author:
 # build settings
 livereload: true
 # port: 4001
+
+scholar:
+  source: "_pages/CV"
+  bibliography: "Bibliography.bib"
+  relative: "/CV/Publications/"
 
 include:
   - _pages
