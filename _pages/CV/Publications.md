@@ -5,13 +5,8 @@ layout: single
 author_profile: true
 toc: true
 ---
-
-{{ page.title }}
-
-
 ## Journal Articles
 {% bibliography --query @article %}
-
 
 ## Refereed Conference Proceedings
 {% bibliography --query @inproceedings %}
