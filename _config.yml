@@ -11,6 +11,8 @@ github_username:  jlconlin
 
 author_profile: true
 markdown: kramdown
+kramdown:
+  parse_block_html: true
 
 plugins:
   - jekyll/scholar
@@ -42,8 +44,12 @@ livereload: true
 
 scholar:
   source: "_pages/CV"
+  sort_by: "year,month"
+  order: "descending"
   bibliography: "Bibliography.bib"
-  relative: "/CV/Publications/"
+  relative: "/CV/Publications.html"
+  bibtex_filters:
+    - latex
 
 include:
   - _pages

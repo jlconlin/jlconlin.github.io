@@ -46,6 +46,9 @@ This is only a summary of activities. Please follow the links for additional inf
 **Ott Planetarium Lecturer** (January 2000--May 2003)
 : Physics Department
 
+## Publications
+You can see an extensive list of my publications [here]({% link _pages/CV/Publications.md %})
+
 ## Students Mentored
 I've been very fortunate to have mentored several great students. Look at my [Students]({% link _pages/CV/Students.md %}) page for more details
 

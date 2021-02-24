@@ -1,12 +1,21 @@
 ---
-title: Bibliography
+title: Publications
+permalink: /CV/Publications.html
 layout: single
 author_profile: true
-permalink: /CV/Publications.html
+toc: true
 ---
 
 {{ page.title }}
 
-{% bibliography %}
 
+## Journal Articles
+{% bibliography --query @article %}
+
+
+## Refereed Conference Proceedings
+{% bibliography --query @inproceedings %}
+
+## Technical Reports and Internal Memos
+{% bibliography --query !@article  --query !@inproceedings %}
 
