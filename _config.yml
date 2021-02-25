@@ -1,4 +1,7 @@
+# Site Settings
+locale: "en-US"
 title: Jeremy Lloyd Conlin
+subtitle: My home on the intertubes
 # email: jlconlin@me.com
 description: >- # this means to ignore newlines until "baseurl:"
   Personal website for Jeremy Lloyd Conlin to share my professional activities 
@@ -43,8 +46,8 @@ author:
   # email    : "jlconlin@me.com"
   # location : "Los Alamos, NM"
   links    : 
-    - label: "https://jl.conlin.io"
-      icon: "fas fa-fw fa-link"
+    - label: "Home"
+      icon: "fas fas fa-home"
       url: "https://jl.conlin.io"
     - label: "Twitter"
       icon: "fab fa-fw fa-twitter-square"
@@ -53,7 +56,12 @@ author:
       icon: "fab fa-fw fa-github"
       url: "https://github.com/jlconlin"
     - label: "About"
+      icon: "fab far fa-address-card"
       url: "https://jl.conlin.io/about"
+
+# Social Sharing
+twitter:
+  username: &twitter "jlconlin"
 
 # build settings
 livereload: true
