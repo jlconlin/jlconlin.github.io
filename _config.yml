@@ -38,7 +38,7 @@ defaults:
 
 author:
   # name     : "Jeremy Lloyd Conlin"
-  avatar   : "/images/profile.png"
+  avatar   : "/assets/images/profile.png"
   bio      : "Computational physicist with nuclear engineering and nuclear data experience"
   # email    : "jlconlin@me.com"
   # location : "Los Alamos, NM"
@@ -52,6 +52,8 @@ author:
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/jlconlin"
+    - label: "About"
+      url: "https://jl.conlin.io/about"
 
 # build settings
 livereload: true
@@ -77,7 +79,7 @@ scholar:
 
 include:
   - _pages
-  - _photos
+  - assets
 
 exclude:
   - .sass-cache/

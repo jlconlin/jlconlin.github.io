@@ -7,3 +7,5 @@ main:
     url: /CV/Students.html
   - title: "Blog"
     url: /blog/
+  - title: "About"
+    url: /about/
