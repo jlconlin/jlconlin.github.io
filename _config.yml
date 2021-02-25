@@ -1,9 +1,9 @@
 title: Jeremy Lloyd Conlin
 # email: jlconlin@me.com
 description: >- # this means to ignore newlines until "baseurl:"
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
+  Personal website for Jeremy Lloyd Conlin to share my professional activities 
+  and a blog of my personal hobbies.
+
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://jl.conlin.io" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: jlconlin
@@ -16,11 +16,26 @@ kramdown:
 
 plugins:
   - jekyll/scholar
+  - jekyll-archives
 
 # Theme settings
 theme: minimal-mistakes-jekyll
+repository: "jlconlin/jlconlin.github.io"
 search: true
 breadcrumbs: true
+show_date: true
+
+defaults:
+  # _posts
+  - scope:
+      path: _posts
+      type: posts
+    values:
+      author_profile: true
+      layout: single
+      comments: true
+      permalink: /blog/:year/:month/:day/:title
+
 author:
   # name     : "Jeremy Lloyd Conlin"
   avatar   : "/images/profile.png"
@@ -41,6 +56,15 @@ author:
 # build settings
 livereload: true
 # port: 4001
+jekyll-archives:
+  enabled: []
+  layout: archive
+  permalinks:
+    year: '/blog/:year/'
+    month: '/blog/:year/:month/'
+    day: '/blog/:year/:month/:day/'
+    tag: '/blog/tag/:name/'
+    category: '/category/:name/'
 
 scholar:
   source: "_pages/CV"
