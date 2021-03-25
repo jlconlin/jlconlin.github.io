@@ -20,6 +20,7 @@ kramdown:
 plugins:
   - jekyll/scholar
   - jekyll-archives
+  - jekyll-gist
 
 # Theme settings
 theme: minimal-mistakes-jekyll
@@ -37,6 +38,7 @@ defaults:
       author_profile: true
       layout: single
       comments: true
+      toc: true
       permalink: /blog/:year/:month/:day/:title
 
 author:
