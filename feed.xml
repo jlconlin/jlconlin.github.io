@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://jl.conlin.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://jl.conlin.io/" rel="alternate" type="text/html" /><updated>2021-03-25T12:36:23+00:00</updated><id>https://jl.conlin.io/feed.xml</id><title type="html">Jeremy Lloyd Conlin</title><subtitle>Personal website for Jeremy Lloyd Conlin to share my professional activities  and a blog of my personal hobbies.</subtitle><author><name>{&quot;avatar&quot;=&gt;&quot;/assets/images/profile.png&quot;, &quot;bio&quot;=&gt;&quot;Computational physicist with nuclear engineering and nuclear data experience&quot;, &quot;links&quot;=&gt;[{&quot;label&quot;=&gt;&quot;Home&quot;, &quot;icon&quot;=&gt;&quot;fas fas fa-home&quot;, &quot;url&quot;=&gt;&quot;https://jl.conlin.io&quot;}, {&quot;label&quot;=&gt;&quot;Twitter&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-twitter-square&quot;, &quot;url&quot;=&gt;&quot;https://twitter.com/jlconlin&quot;}, {&quot;label&quot;=&gt;&quot;GitHub&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-github&quot;, &quot;url&quot;=&gt;&quot;https://github.com/jlconlin&quot;}, {&quot;label&quot;=&gt;&quot;About&quot;, &quot;icon&quot;=&gt;&quot;fab far fa-address-card&quot;, &quot;url&quot;=&gt;&quot;https://jl.conlin.io/about&quot;}]}</name></author><entry><title type="html">Working with OLED Displays</title><link href="https://jl.conlin.io/blog/2021/03/25/Working-with-OLED-Displays" rel="alternate" type="text/html" title="Working with OLED Displays" /><published>2021-03-25T05:57:00+00:00</published><updated>2021-03-25T05:57:00+00:00</updated><id>https://jl.conlin.io/blog/2021/03/25/Working-with-OLED-Displays</id><content type="html" xml:base="https://jl.conlin.io/blog/2021/03/25/Working-with-OLED-Displays">&lt;p&gt;I’ve been working with a Raspberry Pi Zero. I want to set it up to automatically take pictures and will (eventually) set it up where it won’t be connected to a keyboard/mouse/monitor. I will still need to know the IP address so I can use VNC to connect to from a different computer.&lt;/p&gt;
+
+&lt;p&gt;So I attached a small 128x64 OLED display &lt;sup id=&quot;fnref:wiring&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:wiring&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; and wrote a small Python script to write the IP address to the screen. Okay, I didn’t write the script, I learned how to do this from those great folks at &lt;a href=&quot;https://learn.adafruit.com/adafruit-pioled-128x32-mini-oled-for-raspberry-pi/usage&quot;&gt;Adafruit&lt;/a&gt; who have a nice little &lt;a href=&quot;https://www.adafruit.com/product/3527&quot;&gt;OLED display&lt;/a&gt; designed to work with the Raspberry Pi Zero. (I ended up buying two of them!)&lt;/p&gt;
+
+&lt;p&gt;I had to make some very slight modifications to the original script to work with my OLED display, which you can see here&lt;/p&gt;
+&lt;noscript&gt;
+  &lt;pre&gt;400: Invalid request&lt;/pre&gt;
+&lt;/noscript&gt;
+&lt;script src=&quot;https://gist.github.com/273b1c0559ed3e66f5fe6086cebac882.js?file=startup.py&quot;&gt; &lt;/script&gt;
+
+&lt;h2 id=&quot;running-automatically-at-boot&quot;&gt;Running automatically at boot&lt;/h2&gt;
+&lt;p&gt;Those nice folks at Adafruit also showed how to automatically run this script at boot. Simply add:&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo python3 /home/pi/bin/startup.py &amp;amp;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/etc/rc.local&lt;/code&gt; before the line that says &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;exit 0&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;turning-off-display&quot;&gt;Turning off display&lt;/h2&gt;
+&lt;p&gt;You don’t always want the display on. I’ll be running on battery power and the display will consume power and reduce the amount of time I can run my camera. Well, it’s pretty simple to turn the display off.&lt;/p&gt;
+
+&lt;noscript&gt;
+  &lt;pre&gt;400: Invalid request&lt;/pre&gt;
+&lt;/noscript&gt;
+&lt;script src=&quot;https://gist.github.com/273b1c0559ed3e66f5fe6086cebac882.js?file=poweroffDisplay.py&quot;&gt; &lt;/script&gt;
+
+&lt;p&gt;When you want to turn off the OLED display, just execute that script&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;python3 ~/bin/poweroffDisplay.py
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;footnotes&quot; role=&quot;doc-endnotes&quot;&gt;
+  &lt;ol&gt;
+    &lt;li id=&quot;fn:wiring&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;Simple wiring diagram can be found here: &lt;a href=&quot;https://circuitdigest.com/microcontroller-projects/ssd1306-oled-display-with-raspberry-pi&quot;&gt;https://circuitdigest.com/microcontroller-projects/ssd1306-oled-display-with-raspberry-pi&lt;/a&gt;. Warning: your display board may not have the terminal pins in the same order as what is used on that site. &lt;a href=&quot;#fnref:wiring&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/div&gt;</content><author><name>{&quot;avatar&quot;=&gt;&quot;/assets/images/profile.png&quot;, &quot;bio&quot;=&gt;&quot;Computational physicist with nuclear engineering and nuclear data experience&quot;, &quot;links&quot;=&gt;[{&quot;label&quot;=&gt;&quot;Home&quot;, &quot;icon&quot;=&gt;&quot;fas fas fa-home&quot;, &quot;url&quot;=&gt;&quot;https://jl.conlin.io&quot;}, {&quot;label&quot;=&gt;&quot;Twitter&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-twitter-square&quot;, &quot;url&quot;=&gt;&quot;https://twitter.com/jlconlin&quot;}, {&quot;label&quot;=&gt;&quot;GitHub&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-github&quot;, &quot;url&quot;=&gt;&quot;https://github.com/jlconlin&quot;}, {&quot;label&quot;=&gt;&quot;About&quot;, &quot;icon&quot;=&gt;&quot;fab far fa-address-card&quot;, &quot;url&quot;=&gt;&quot;https://jl.conlin.io/about&quot;}]}</name></author><category term="OLED" /><category term="Display" /><category term="Adafruit" /><category term="Python" /><summary type="html">I’ve been working with a Raspberry Pi Zero. I want to set it up to automatically take pictures and will (eventually) set it up where it won’t be connected to a keyboard/mouse/monitor. I will still need to know the IP address so I can use VNC to connect to from a different computer.</summary></entry><entry><title type="html">Configuring Network Interfaces</title><link href="https://jl.conlin.io/blog/2021/03/10/Configuring-Network-Interfaces" rel="alternate" type="text/html" title="Configuring Network Interfaces" /><published>2021-03-10T06:20:00+00:00</published><updated>2021-03-10T06:20:00+00:00</updated><id>https://jl.conlin.io/blog/2021/03/10/Configuring-Network-Interfaces</id><content type="html" xml:base="https://jl.conlin.io/blog/2021/03/10/Configuring-Network-Interfaces">&lt;p&gt;In trying to get pi-hole working at home, I need to have multiple IP addresses for my Raspberry Pi server. I need this because my router requires three different IP addresses.&lt;/p&gt;
+
+&lt;p&gt;You can create a virtual network interface &lt;em&gt;temporarily&lt;/em&gt; by executing the command:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;
+  &lt;pre&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;&lt;span class=&quot;gp&quot;&gt;ifconfig eth0:0 &amp;lt;new IP address&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;If you want to &lt;em&gt;permanently&lt;/em&gt; do the above you need to modify two files &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/etc/network interfaces&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/etc/dhcpcd.conf&lt;/code&gt;. [^Raspbian] The example below are to add two virtual interfaces.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/etc/network/interfaces&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;
+  &lt;pre&gt;&lt;code class=&quot;language-txt&quot; data-lang=&quot;txt&quot;&gt;# VLan 1 Interface
+auto eth0.1
+iface eth0.1 inet manual
+  vlan-raw-device eth0
+
+auto eth0.2
+iface eth0.2 inet manual
+  vlan-raw-device eth0&lt;/code&gt;&lt;/pre&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/etc/dhcpcd.conf&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;
+  &lt;pre&gt;&lt;code class=&quot;language-txt&quot; data-lang=&quot;txt&quot;&gt;# Leave physical interface alone
+denyinterfaces eth0
+
+# Static IP configuration for VLan 1 and 2
+interface eth0.1
+  static ip_address=&amp;lt;new IP address&amp;gt;
+  static routers=&amp;lt;IP address for router&amp;gt;
+  static domain_name_servers=&amp;lt;DNS IP address&amp;gt;
+
+interface eth0.2
+  static ip_address=&amp;lt;second new IP address&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;After you make these changes, you’ll have to reboot.&lt;/p&gt;
+
+&lt;p&gt;This worked mostly well for me. For some reason the second virtual interface didn’t quite take. I’m not sure why.&lt;/p&gt;
+
+&lt;p&gt;I learned all of this from the &lt;a href=&quot;https://www.raspberrypi.org/forums/viewtopic.php?p=998957#p998957&quot;&gt;forums&lt;/a&gt; on &lt;a href=&quot;https://www.raspberrypi.org/forms&quot;&gt;https://www.raspberrypi.org/forms&lt;/a&gt;.
+[^Raspbian]: I am doing this with the Raspbian OS, so this may be different in other circumstances&lt;/p&gt;</content><author><name>{&quot;avatar&quot;=&gt;&quot;/assets/images/profile.png&quot;, &quot;bio&quot;=&gt;&quot;Computational physicist with nuclear engineering and nuclear data experience&quot;, &quot;links&quot;=&gt;[{&quot;label&quot;=&gt;&quot;Home&quot;, &quot;icon&quot;=&gt;&quot;fas fas fa-home&quot;, &quot;url&quot;=&gt;&quot;https://jl.conlin.io&quot;}, {&quot;label&quot;=&gt;&quot;Twitter&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-twitter-square&quot;, &quot;url&quot;=&gt;&quot;https://twitter.com/jlconlin&quot;}, {&quot;label&quot;=&gt;&quot;GitHub&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-github&quot;, &quot;url&quot;=&gt;&quot;https://github.com/jlconlin&quot;}, {&quot;label&quot;=&gt;&quot;About&quot;, &quot;icon&quot;=&gt;&quot;fab far fa-address-card&quot;, &quot;url&quot;=&gt;&quot;https://jl.conlin.io/about&quot;}]}</name></author><category term="network" /><category term="virtual interface" /><category term="config" /><summary type="html">In trying to get pi-hole working at home, I need to have multiple IP addresses for my Raspberry Pi server. I need this because my router requires three different IP addresses.</summary></entry><entry><title type="html">VNC Authentication with Raspberry Pi</title><link href="https://jl.conlin.io/blog/2021/03/02/VNC-Authentication-with-Raspberry-Pi" rel="alternate" type="text/html" title="VNC Authentication with Raspberry Pi" /><published>2021-03-02T06:14:00+00:00</published><updated>2021-03-02T06:14:00+00:00</updated><id>https://jl.conlin.io/blog/2021/03/02/VNC-Authentication-with-Raspberry-Pi</id><content type="html" xml:base="https://jl.conlin.io/blog/2021/03/02/VNC-Authentication-with-Raspberry-Pi">&lt;p&gt;I like to use the Screen Sharing app on my Mac to connect to my Raspberry Pi so I don’t have to connect a keyboard/mouse/monitor. After it is setup, you can do this. A little more configuration needs to be done in order to make this work seamlessly with Screen Sharing.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Click the VNC button in the menu bar and selct “Options…”&lt;/li&gt;
+  &lt;li&gt;Select “Security” on the left side
+    &lt;ul&gt;
+      &lt;li&gt;Set Encryption to “Prefer Off”&lt;/li&gt;
+      &lt;li&gt;Set Authentication to “VNC password”&lt;/li&gt;
+    &lt;/ul&gt;
+
+    &lt;p&gt;This should prompt to create a password. If not proceed to step 3.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Select “Users &amp;amp; Permissions”
+    &lt;ul&gt;
+      &lt;li&gt;Select “Standard user (user)” and create a password.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Now you can go to your Mac, open Screen Sharing, set the appropriate address and connect to your machine. Alternatively you can use the Finder and select Go &amp;gt; Network and type &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;vnc://ip.add.re.ss&lt;/code&gt; and it will open Screen Sharing for you.&lt;/p&gt;
+
+&lt;p&gt;I discovered this from &lt;a href=&quot;https://raspberrypi.stackexchange.com/a/70981/107023&quot;&gt;StackExchange&lt;/a&gt;, of course.&lt;/p&gt;</content><author><name>{&quot;avatar&quot;=&gt;&quot;/assets/images/profile.png&quot;, &quot;bio&quot;=&gt;&quot;Computational physicist with nuclear engineering and nuclear data experience&quot;, &quot;links&quot;=&gt;[{&quot;label&quot;=&gt;&quot;Home&quot;, &quot;icon&quot;=&gt;&quot;fas fas fa-home&quot;, &quot;url&quot;=&gt;&quot;https://jl.conlin.io&quot;}, {&quot;label&quot;=&gt;&quot;Twitter&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-twitter-square&quot;, &quot;url&quot;=&gt;&quot;https://twitter.com/jlconlin&quot;}, {&quot;label&quot;=&gt;&quot;GitHub&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-github&quot;, &quot;url&quot;=&gt;&quot;https://github.com/jlconlin&quot;}, {&quot;label&quot;=&gt;&quot;About&quot;, &quot;icon&quot;=&gt;&quot;fab far fa-address-card&quot;, &quot;url&quot;=&gt;&quot;https://jl.conlin.io/about&quot;}]}</name></author><category term="VNC" /><category term="Authentication" /><summary type="html">I like to use the Screen Sharing app on my Mac to connect to my Raspberry Pi so I don’t have to connect a keyboard/mouse/monitor. After it is setup, you can do this. A little more configuration needs to be done in order to make this work seamlessly with Screen Sharing.</summary></entry><entry><title type="html">Hello World!</title><link href="https://jl.conlin.io/blog/2021/02/25/February25" rel="alternate" type="text/html" title="Hello World!" /><published>2021-02-25T07:55:00+00:00</published><updated>2021-02-25T07:55:00+00:00</updated><id>https://jl.conlin.io/blog/2021/02/25/February25</id><content type="html" xml:base="https://jl.conlin.io/blog/2021/02/25/February25">&lt;p&gt;I wasn’t intending to start a blog, yet here I am. For years I have kept a personal journal where I write about the days events for me and my family. I’ve also kept professional Lab Notebook—essentially a blog of my professional work as a scientist. This blog comes out of the need to document my personal hobbies, that don’t quite fit into what I write in my personal journal. I’ll probably be writing about my budding interest in Raspberry Pi and Arduino. We’ll see what else I’ll write about.&lt;/p&gt;
+
+&lt;p&gt;I’ve chosen to use the nice &lt;a href=&quot;https://http://mmistakes.github.io/minimal-mistakes/&quot;&gt;minimal-mistakes&lt;/a&gt; theme for my blog. I’ve been using it for my Lab Notebook and it works rather well.&lt;/p&gt;</content><author><name>{&quot;avatar&quot;=&gt;&quot;/assets/images/profile.png&quot;, &quot;bio&quot;=&gt;&quot;Computational physicist with nuclear engineering and nuclear data experience&quot;, &quot;links&quot;=&gt;[{&quot;label&quot;=&gt;&quot;Home&quot;, &quot;icon&quot;=&gt;&quot;fas fas fa-home&quot;, &quot;url&quot;=&gt;&quot;https://jl.conlin.io&quot;}, {&quot;label&quot;=&gt;&quot;Twitter&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-twitter-square&quot;, &quot;url&quot;=&gt;&quot;https://twitter.com/jlconlin&quot;}, {&quot;label&quot;=&gt;&quot;GitHub&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-github&quot;, &quot;url&quot;=&gt;&quot;https://github.com/jlconlin&quot;}, {&quot;label&quot;=&gt;&quot;About&quot;, &quot;icon&quot;=&gt;&quot;fab far fa-address-card&quot;, &quot;url&quot;=&gt;&quot;https://jl.conlin.io/about&quot;}]}</name></author><category term="Raspberry Pi" /><category term="Arduino" /><category term="blog" /><category term="journal" /><category term="Lab Notebook" /><category term="minimal-mistakes" /><category term="Jekyll" /><summary type="html">I wasn’t intending to start a blog, yet here I am. For years I have kept a personal journal where I write about the days events for me and my family. I’ve also kept professional Lab Notebook—essentially a blog of my professional work as a scientist. This blog comes out of the need to document my personal hobbies, that don’t quite fit into what I write in my personal journal. I’ll probably be writing about my budding interest in Raspberry Pi and Arduino. We’ll see what else I’ll write about.</summary></entry></feed>
